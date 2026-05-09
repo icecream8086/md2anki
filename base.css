@@ -1,0 +1,9 @@
+:root {
+  --color-neutral: #2D7DD2;   /* 提问 */
+  --color-alert: #D62839;     /* 易错点 */
+  --color-success: #2A9D8F;   /* 答案反馈 */
+  --color-emphasis: #F77F00;  /* 例子 */
+  --bg: #121212;
+  --text: #E0E0E0;
+  --spacing: 1.5rem;
+}
