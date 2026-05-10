@@ -1,0 +1,37 @@
+.code-topic {
+  font-size: 0.9em;
+  color: var(--text-dim);
+  margin-bottom: 0.5em;
+}
+.code-block {
+  background: #1a1a2e;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 1.2em;
+  margin: 0.8em 0;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  line-height: 1.7;
+  color: #e8e8e8;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.output-block {
+  background: rgba(42,157,143,0.08);
+  border-left: 3px solid var(--color-success);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1em 1.2em;
+  margin: 0.8em 0;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  color: var(--color-success);
+  line-height: 1.7;
+}
+.explanation-block {
+  margin-top: 0.8em;
+  padding: 0.8em 1em;
+  color: var(--text-dim);
+  font-size: 0.95em;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+}

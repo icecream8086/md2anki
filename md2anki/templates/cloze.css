@@ -1,0 +1,24 @@
+.cloze-reveal {
+  font-size: 1.3em;
+  color: var(--text-bright);
+  margin: 1.5em 0;
+  padding: 1em;
+  background: rgba(45,125,210,0.05);
+  border-radius: var(--radius);
+  line-height: 1.9;
+}
+.cloze-extra {
+  margin-top: 1em;
+  color: var(--text-dim);
+  font-size: 0.95em;
+  padding: 0.8em 1em;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+}
+.cloze-extra .label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted-4);
+  margin-bottom: 0.3em;
+}

@@ -1,0 +1,30 @@
+.diagram-title {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: var(--text-bright);
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+.diagram-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+  padding: 1em;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+  min-height: 100px;
+  overflow-x: auto;
+}
+.diagram-svg svg {
+  max-width: 100%;
+  height: auto;
+}
+.diagram-explanation {
+  margin-top: 0.8em;
+  padding: 0.8em 1em;
+  color: var(--text-dim);
+  font-size: 0.95em;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+}

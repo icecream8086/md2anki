@@ -33,8 +33,8 @@ class Section(BaseModel):
 
 class Card(BaseModel):
     """A single flashcard with type-specific fields."""
-    type: str = "concept"  # "word" | "math" | "concept"
-    front: str
+    type: str = "concept"  # "word" | "math" | "concept" | "cloze" | "code" | "diagram"
+    front: str = ""
     back: str = ""
     tags: list[str] = []
     source_section: str = ""
@@ -55,6 +55,19 @@ class Card(BaseModel):
     word_phonetic: str = ""
     word_definition: str = ""
     word_example: str = ""
+    morphemes: list[str] = []  # prefix/root/suffix chunks for display
+
+    # Cloze / Grammar
+    extra: str = ""
+
+    # Code / Pseudocode
+    title: str = ""
+    code: str = ""
+    output: str = ""
+    explanation: str = ""
+
+    # Diagram / SVG
+    svg_content: str = ""
 
 
 class Deck(BaseModel):

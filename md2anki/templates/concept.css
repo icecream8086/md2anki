@@ -1,0 +1,28 @@
+.concept-front {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--text-bright);
+  text-align: center;
+  margin: 1.5em 0;
+}
+.concept-section {
+  margin: 1em 0;
+  padding: 0.8em 1em;
+  border-radius: var(--radius);
+  line-height: 1.7;
+}
+.concept-section .label {
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3em;
+}
+.sec-def    { background: rgba(141,155,154,0.10); }
+.sec-def .label    { color: var(--color-muted-1); }
+.sec-analogy      { background: rgba(184,169,201,0.10); }
+.sec-analogy .label { color: var(--color-muted-2); }
+.sec-example      { background: rgba(212,165,165,0.10); }
+.sec-example .label { color: var(--color-muted-3); }
+.sec-notes        { background: rgba(181,196,161,0.10); }
+.sec-notes .label   { color: var(--color-muted-4); }

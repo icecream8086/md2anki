@@ -17,24 +17,32 @@ Classify each card's **type** as one of:
 - "word"    — vocabulary, terminology, definition
 - "math"    — formula, equation, derivation, theorem
 - "concept" — idea, process, explanation, principle
+- "cloze"   — fill-in-the-blank (use {{c1::answer}} in `front` for the gap)
+- "code"    — code snippet → expected output / explanation
+- "diagram" — Venn diagram, SVG animation, flowchart (provide `svg_content`)
 
 ### Per-type field rules:
-- **concept**: `front` = concept name, `back` = short answer, plus separate `definition`, `analogy`, `example`, `notes` fields (each 1-2 sentences).
-- **word**: `front` = word/phrase, `back` = full answer, plus `word_full`, `word_phonetic`, `word_definition`, `word_example`.
-- **math**: `front` = short title, `back` = final answer, plus `steps` = array of 3-5 ordered derivation steps.
+- **concept**: `front` = concept name, `back` = short answer, plus separate `definition`, `analogy`, `example`, `notes`.
+- **word**: `front` = word/phrase, plus `word_full`, `word_phonetic`, `word_definition`, `word_example`.  If possible, also return `morphemes` = array of prefix/root/suffix chunks (e.g. ["un", "believe", "able"]).  When the word has no clear morphemes, omit `morphemes` (fallback = letter groups).
+- **math**: `front` = short title, plus `steps` array (3-5 ordered derivation steps).
+- **cloze**: `front` = sentence with {{c1::gap}}, `back` = full answer, `extra` = grammar note.
+- **code**: `front` = question / prompt, `title` = topic, `code` = the snippet, `output` = expected output, `explanation` = brief analysis, `back` = combined (output + explanation).
+- **diagram**: `front` = title, `svg_content` = raw SVG markup, `explanation` = what the diagram shows, `back` = explanation.
 
 General rules:
 - front should be a short prompt (question / term / incomplete sentence).
 - back / answers under 3 sentences.
-- If the section includes formulas, use Unicode or plain-text approximations.
 - Include 1-3 relevant tags (lowercase, hyphens).
 - If the note is too short, return at least 1 card.
 
 Return ONLY valid JSON, no other text:
 {{"cards": [
-  {{"type": "concept", "front": "...", "back": "...", "definition": "...", "analogy": "...", "example": "...", "notes": "...", "tags": ["tag1"]}},
-  {{"type": "math", "front": "...", "steps": ["step1", "step2", "step3"], "tags": ["tag1"]}},
-  {{"type": "word", "front": "...", "word_full": "...", "word_phonetic": "...", "word_definition": "...", "word_example": "...", "tags": ["tag1"]}}
+  {{"type": "concept", "front": "...", "definition": "...", "analogy": "...", "example": "...", "notes": "...", "tags": ["tag1"]}},
+  {{"type": "math", "front": "...", "steps": ["s1", "s2", "s3"], "tags": ["tag1"]}},
+  {{"type": "word", "front": "...", "word_full": "...", "word_phonetic": "...", "word_definition": "...", "word_example": "...", "tags": ["tag1"]}},
+  {{"type": "cloze", "front": "The {{c1::answer}} is ...", "back": "The answer is correct", "extra": "grammar note", "tags": ["tag1"]}},
+  {{"type": "code", "front": "What does this output?", "title": "map example", "code": "[1,2,3].map(x=>x*2)", "output": "[2,4,6]", "explanation": "map doubles each element", "back": "...", "tags": ["js"]}},
+  {{"type": "diagram", "front": "Venn: A∩B", "svg_content": "<svg>...</svg>", "explanation": "Intersection of sets A and B", "back": "...", "tags": ["logic"]}}
 ]}}
 
 Note section: "{heading}"
@@ -100,10 +108,22 @@ def generate_cards(sections: list[Section]) -> list[Card]:
                 card.word_phonetic = c.get("word_phonetic", "")
                 card.word_definition = c.get("word_definition", "")
                 card.word_example = c.get("word_example", "")
+                card.morphemes = c.get("morphemes", [])
             elif card_type == "math":
                 card.steps = c.get("steps", [])
                 if not card.steps and card.back:
                     card.steps = [card.front, card.back]
+            elif card_type == "cloze":
+                card.extra = c.get("extra", "")
+            elif card_type == "code":
+                card.title = c.get("title", "")
+                card.code = c.get("code", "")
+                card.output = c.get("output", "")
+                card.explanation = c.get("explanation", "")
+            elif card_type == "diagram":
+                card.title = c.get("title", c.get("front", ""))
+                card.svg_content = c.get("svg_content", "")
+                card.explanation = c.get("explanation", "")
 
             all_cards.append(card)
 

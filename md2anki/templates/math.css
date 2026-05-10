@@ -1,0 +1,23 @@
+.math-title {
+  font-size: 1.1em;
+  color: var(--text-dim);
+  margin-bottom: 0.3em;
+  letter-spacing: 0.04em;
+}
+.math-step {
+  font-size: 1.6em;
+  font-weight: 500;
+  color: var(--text-bright);
+  margin: 1em 0;
+  padding: 1em;
+  background: rgba(45,125,210,0.06);
+  border-left: 4px solid var(--color-neutral);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  line-height: 1.7;
+}
+.math-arrow {
+  text-align: center;
+  font-size: 1.4em;
+  color: var(--color-success);
+  margin: 0.5em 0;
+}

@@ -1,0 +1,43 @@
+:root {
+  --bg: #121212;
+  --text: #E0E0E0;
+  --text-dim: #999999;
+  --text-bright: #FFFFFF;
+  --color-neutral: #2D7DD2;
+  --color-alert: #D62839;
+  --color-success: #2A9D8F;
+  --color-emphasis: #F77F00;
+  --color-muted-1: #8D9B9A;
+  --color-muted-2: #B8A9C9;
+  --color-muted-3: #D4A5A5;
+  --color-muted-4: #B5C4A1;
+  --spacing: 1.5rem;
+  --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  padding: var(--spacing);
+  min-height: 100%;
+}
+img { max-width: 100%; display: block; margin: 1em auto; border-radius: 8px; }
+code {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85em;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.2em 0; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card {
+  animation: fadeIn 0.3s ease-out;
+}
